@@ -1,14 +1,30 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Ionic Authentication
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+    <ion-list *ngIf="!loginState">
+        <ion-item>
+            <ion-label floating>Username</ion-label>
+            <ion-input type="text" [(ngModel)]="dataLogin.username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" [(ngModel)]="dataLogin.password"></ion-input>
+        </ion-item>
+    </ion-list>
+    <button *ngIf="!loginState" ion-button full (click)="Login()">Login</button>
+
+    <ion-list *ngIf="loginState" no-lines>
+        <ion-item>
+            <h2>Email: {{loginResponseData.email}}</h2>
+            <p>UID: {{loginResponseData.uid}}</p>
+        </ion-item>
+    </ion-list>
+    <button *ngIf="loginState" ion-button full color="danger" (click)="Logout()">Logout</button>
 </ion-content>

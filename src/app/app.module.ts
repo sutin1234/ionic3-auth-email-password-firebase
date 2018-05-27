@@ -7,6 +7,23 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { AngularFireModule } from "angularfire2";
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireStorageModule } from "angularfire2/storage";
+import { AngularFireAuthModule } from "angularfire2/auth";
+
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyBXh1LjxE22AwPj2zgMp1jip_Q1U0MkKgk",
+    authDomain: "ion3-7bb36.firebaseapp.com",
+    databaseURL: "https://ion3-7bb36.firebaseio.com",
+    projectId: "ion3-7bb36",
+    storageBucket: "ion3-7bb36.appspot.com",
+    messagingSenderId: "1033574228295"
+  }
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -14,7 +31,11 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(environment.firebase, 'ionic3-auth'),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
